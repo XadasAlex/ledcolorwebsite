@@ -1,6 +1,5 @@
 const client = mqtt.connect("ws://192.168.178.40:9001");
 const colorPicker = new iro.ColorPicker("#picker");
-const effectButton = document.getElementById("effect1");
 const brightnessSelector = document.getElementById("brightnessSelector");
 
 const lampStates = {};
@@ -35,10 +34,6 @@ colorPicker.on("color:change", function (color) {
 
 brightnessSelector.addEventListener("change", (e) => {
   publishToAll(JSON.stringify({ brightness: `${e.target.value}` }));
-});
-
-effectButton.addEventListener("click", () => {
-  publishToAll(JSON.stringify({ effect: "colorloop" }));
 });
 
 client.on("connect", () => {
